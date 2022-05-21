@@ -1,26 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
 android:layout_height="63dp"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
 android:layout_alignParentBottom="true"
 android:gravity="center"
+    android:background="#161616"
 android:orientation="horizontal" >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:id="@+id/commitLayout"
+        >
 
-<Button
-    android:id="@+id/button_first"
-    android:layout_width="100dp"
-    android:layout_height="wrap_content"
-    android:text="Commit"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#161616"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+            <View
+                android:layout_width="7.95dp"
+                android:layout_height="2dp"
+                android:id="@+id/ff"
+                android:background="@drawable/btn_first_first"/>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/btn_first_last"/>
+            <View
+                android:layout_width="7.95dp"
 
-    />
+                android:layout_height="2dp"
+                android:background="@drawable/btn_first_first"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txtCommit"
+            android:layout_width="37dp"
+            android:layout_height="13dp"
+            android:text="Commits"
+            android:textColor="#0A84FF"
+            android:textSize="10sp" />
+    </LinearLayout>
 
-<Button
-    android:id="@+id/button_second"
-    android:layout_width="100dp"
-    android:layout_height="wrap_content"
-    android:text="Profile"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginLeft="110dp"
+        android:clickable="true"
+        android:id="@+id/profileLayout"
+        >
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+
+            android:background="@drawable/btn_second_first"/>
+        <View
+            android:layout_width="16dp"
+            android:layout_height="6dp"
+            android:background="@drawable/btn_second_last"/>
+        <TextView
+            android:id="@+id/txtProfile"
+            android:layout_width="44dp"
+            android:layout_height="13dp"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="#0A84FF"
+            android:textSize="10sp" />
+    </LinearLayout>
 
 
-    />
 </LinearLayout>

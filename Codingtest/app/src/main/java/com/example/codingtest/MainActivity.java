@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public static Profile profile;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    public static int width;
+    public static int margin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        margin = getResources().getDimensionPixelSize(R.dimen.message_margin);
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        width = displayMetrics.widthPixels;
         profile = new Profile();
 
         setSupportActionBar(binding.toolbar);
-getSupportActionBar().hide();
+        getSupportActionBar().hide();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

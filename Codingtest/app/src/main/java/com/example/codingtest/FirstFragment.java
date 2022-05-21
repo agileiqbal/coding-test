@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.List;
+import java.util.ArrayList;
 
 public class FirstFragment extends Fragment  {
     private final CallBack mOnClickListener = new CallBack() {
@@ -41,7 +44,8 @@ public class FirstFragment extends Fragment  {
         }
     };
     private FragmentFirstBinding binding;
-    CommitList[] myListData;
+    //CommitList[] myListData;
+    private List<CommitList> myListData;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -49,29 +53,7 @@ public class FirstFragment extends Fragment  {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        myListData = new CommitList[10];
-
-       /* myListData = new CommitList[] {
-                new CommitList("Email", "iqbal"),
-                new CommitList("Info", "iqbal"),
-                new CommitList("Delete","iqbal"),
-                new CommitList("Dialer", "iqbal"),
-                new CommitList("Alert", "iqbal"),
-                new CommitList("Email", "iqbal"),
-                new CommitList("Info", "iqbal"),
-                new CommitList("Delete","iqbal"),
-                new CommitList("Dialer", "iqbal"),
-                new CommitList("Alert", "iqbal"),
-
-        };
-
-        CommitListAdapter adapter = new CommitListAdapter(myListData);
-        Log.d("iqbal", "ca;;ed3");
-        binding.recyclerview.setHasFixedSize(true);
-
-        binding.recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.recyclerview.setAdapter(adapter);*/
-
+        myListData = new ArrayList();
         return binding.getRoot();
 
     }
@@ -79,28 +61,18 @@ public class FirstFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         new LoadCommitList(getActivity().getApplicationContext()).execute();
-        Button firstBtn = (Button) view.findViewById(R.id.button_first);
-        firstBtn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-      //do nothing
-    }
-});
-        Button secondBtn = (Button) view.findViewById(R.id.button_second);
-        secondBtn.setOnClickListener(new View.OnClickListener() {
+        //View v = (View) view.findViewById(R.id.ff);
+        //v.setAlpha(0.5f);
+        LinearLayout ll = (LinearLayout) view.findViewById(R.id.profileLayout);
+        ll.setAlpha(0.5f);
+        ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
-      /*  binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });*/
+
     }
 
     @Override
@@ -133,7 +105,7 @@ public class FirstFragment extends Fragment  {
 
             URL url = null;
             try {
-                url = new URL("https://api.github.com/repos/flutter/flutter/commits");
+                url = new URL("https://api.github.com/repos/flutter/flutter/commits?sha=master&per_page=1000");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -177,6 +149,9 @@ public class FirstFragment extends Fragment  {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(sb == null){
+                return null;
+            }
 
             jsonString = sb.toString();
 
@@ -193,7 +168,7 @@ public class FirstFragment extends Fragment  {
                     JSONObject commit = json.getJSONObject("author");
                     String name = commit.getString("name");
 
-                   // if(!name.contains("x") && !name.contains("g")){
+                    if(!name.contains("x") && !name.contains("g")){
                         Log.d("iqbal count = ", String.valueOf(count));
                         String date = commit.getString("date");
                         String msg = json.getString("message");
@@ -204,13 +179,13 @@ public class FirstFragment extends Fragment  {
                         String id = json2.getString("login");
                         String avatar = json2.getString("avatar_url");
                         CommitList cml = new CommitList(name, resultMsg, avatar,date, id);
-                        myListData[count] = cml;
+                        myListData.add(cml) ;
                         Log.d("iqbal", cml.getName() + " "+ cml.getAvatar() + cml.getDate() + cml.getMessage() + cml.getId());
                         count++;
                         if(count == 10){
                             break;
                         }
-                   // }
+                    }
 
                     //JSONArray jData = json.getJSONArray("message");
 
@@ -235,7 +210,7 @@ public class FirstFragment extends Fragment  {
                CommitListAdapter adapter = new CommitListAdapter(myListData, mOnClickListener);
                 Log.d("iqbal", "ca;;ed3");
                 binding.recyclerview.setHasFixedSize(true);
-
+              //  binding.recyclerview.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
                 binding.recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
                 binding.recyclerview.setAdapter(adapter);
         }

@@ -3,10 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/btn_first_first.xml" value="0.198" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/btn_first_last.xml" value="0.198" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/btn_second_first.xml" value="0.198" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/btn_second_last.xml" value="0.198" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/circle.xml" value="0.121" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/divider.xml" value="0.121" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/image.xml" value="0.121" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/drawable/rounded_corner.xml" value="0.121" />
         <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/activity_main.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/content_main.xml" value="0.17572463768115942" />
-        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/footer_item.xml" value="0.10989583333333333" />
-        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/fragment_first.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/footer_item.xml" value="0.1" />
+        <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/fragment_first.xml" value="0.6" />
         <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/fragment_second.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/Shahed Biswas/AndroidStudioProjects/Codingtest/app/src/main/res/layout/item_list.xml" value="0.1" />
       </map>

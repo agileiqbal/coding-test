@@ -2,26 +2,28 @@ package com.example.codingtest.data;
 
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import android.util.Log;
-import android.content.Context;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
+import android.util.Log;
+import android.util.DisplayMetrics;
+import android.content.Context;
+import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codingtest.MainActivity;
 import com.example.codingtest.R;
 import com.example.codingtest.SecondFragment;
+import com.squareup.picasso.Picasso;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.ViewHolder> {
-    private CommitList[] listdata;
+   // private CommitList[] listdata;
+    private List<CommitList> listdata;
 
     private CallBack mCallBack;
    // private final OnClickListener mOnClickListener = new MyOnClickListener();
@@ -30,8 +32,8 @@ public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.Vi
 
         mCallBack = callback;
     }
-    public CommitListAdapter(CommitList[] listdata, CallBack mOnClickListener) {
-        Log.d("iqbal size = ", String.valueOf(listdata.length));
+    public CommitListAdapter(List<CommitList> listdata, CallBack mOnClickListener) {
+
         this.listdata = listdata;
         mCallBack = mOnClickListener;
 
@@ -41,7 +43,6 @@ public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.Vi
        Log.d("iqbal ","called");
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View listItem= layoutInflater.inflate(R.layout.item_list, viewGroup, false);
-
         //listItem.setOnClickListener();
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
@@ -49,45 +50,50 @@ public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.Vi
 
     @Override
     public void onBindViewHolder( CommitListAdapter.ViewHolder viewHolder, int i) {
-        final CommitList myListData = listdata[i];
+        final CommitList myListData = listdata.get(i);
 //        Log.d("iqbal", listdata[i].getName());
-        viewHolder.textView.setText(listdata[i].getName());
+        //LinearLayout.LayoutParams Params1 = new LinearLayout.LayoutParams(15,50);
 
-
+        LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(MainActivity.width - 310, ViewGroup.LayoutParams.WRAP_CONTENT);
+        llp.setMargins(MainActivity.margin,0,0,0);
+        Log.d("agile", String.valueOf(MainActivity.width));
+        viewHolder.textView.setLayoutParams(llp);
+        int index = listdata.get(i).getDate().indexOf("T");
+        String resultMsg = listdata.get(i).getDate().substring(0, index);
+        viewHolder.textView.setText(listdata.get(i).getMessage());
+        viewHolder.txtDate.setText(resultMsg);
+        Picasso.get().load(listdata.get(i).getAvatar()).transform(new CropCircleTransformation()).into(viewHolder.smallAvatar);
+        viewHolder.txtName.setText(listdata.get(i).getName());
         //viewHolder.textView.setText("iqbal");
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return listdata.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
         public TextView textView;
+        public TextView txtDate;
+        public ImageView smallAvatar;
+        public TextView txtName;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.textView = (TextView) itemView.findViewById(R.id.textViewList);
+            this.textView = (TextView) itemView.findViewById(R.id.txtTitle);
+            this.txtDate = (TextView) itemView.findViewById(R.id.txtDate);
+            this.smallAvatar = (ImageView) itemView.findViewById(R.id.small_avatar);
+            this.txtName = (TextView) itemView.findViewById(R.id.txtName);
             Context context = itemView.getContext();
 
-            textView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mCallBack.onItemClick();
-
-                    MainActivity.getProfile().setId(listdata[getAbsoluteAdapterPosition()].getId());
-                    /*Log.d("iqbal", "calleddddd");
-                   int pos = getAbsoluteAdapterPosition();
-                    Log.d("iqbal positio", String.valueOf(pos));
-
-                  //  Navigation.createNavigateOnClickListener(R.id.action_FirstFragment_to_SecondFragment);
-                    Fragment second = new SecondFragment();
-                    FragmentManager ft = ((MainActivity)context).getSupportFragmentManager();
-                    ft.popBackStack();
-                    //ft.beginTransaction().
-                    ft.beginTransaction().replace(R.id.sf, second).addToBackStack(null).commit();*/
+                    MainActivity.getProfile().setId(listdata.get(getAbsoluteAdapterPosition()).getId());
+                    MainActivity.getProfile().setName(listdata.get(getAbsoluteAdapterPosition()).getName());
                 }
             });
         }
