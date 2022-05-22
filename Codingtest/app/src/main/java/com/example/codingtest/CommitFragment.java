@@ -19,7 +19,7 @@ import android.util.Log;
 import com.example.codingtest.data.CallBack;
 import com.example.codingtest.data.CommitList;
 import com.example.codingtest.data.CommitListAdapter;
-import com.example.codingtest.databinding.FragmentFirstBinding;
+import com.example.codingtest.databinding.FragmentCommitBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,15 +35,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FirstFragment extends Fragment  {
+public class CommitFragment extends Fragment  {
     private final CallBack mOnClickListener = new CallBack() {
         @Override
         public void onItemClick() {
-            NavHostFragment.findNavController(FirstFragment.this)
-                    .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            NavHostFragment.findNavController(CommitFragment.this)
+                    .navigate(R.id.action_CommitFragment_to_ProfileFragment);
         }
     };
-    private FragmentFirstBinding binding;
+    private FragmentCommitBinding binding;
     private List<CommitList> myListData;
     @Override
     public View onCreateView(
@@ -51,7 +51,7 @@ public class FirstFragment extends Fragment  {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentCommitBinding.inflate(inflater, container, false);
         myListData = new ArrayList();
         return binding.getRoot();
 
@@ -65,8 +65,8 @@ public class FirstFragment extends Fragment  {
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                NavHostFragment.findNavController(CommitFragment.this)
+                        .navigate(R.id.action_CommitFragment_to_ProfileFragment);
             }
         });
 

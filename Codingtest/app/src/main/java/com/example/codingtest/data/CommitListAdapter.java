@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codingtest.MainActivity;
 import com.example.codingtest.R;
-import com.example.codingtest.SecondFragment;
+import com.example.codingtest.ProfileFragment;
 import com.example.codingtest.utils.Util;
 import com.squareup.picasso.Picasso;
 

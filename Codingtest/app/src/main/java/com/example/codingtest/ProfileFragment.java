@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.codingtest.data.CommitList;
 import com.example.codingtest.data.CommitListAdapter;
-import com.example.codingtest.databinding.FragmentSecondBinding;
+import com.example.codingtest.databinding.FragmentProfileBinding;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -39,9 +39,9 @@ import java.net.URL;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class SecondFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentProfileBinding binding;
     private ImageView imgAvatar;
     private TextView txtName;
     //private TextView txtName;
@@ -59,13 +59,14 @@ public class SecondFragment extends Fragment {
     private String pg = "";
     private String prR = "0";
 
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -87,8 +88,9 @@ public class SecondFragment extends Fragment {
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                NavHostFragment.findNavController(ProfileFragment.this)
+                        .navigate(R.id.action_ProfileFragment_to_CommitFragment);
+
             }
         });
 

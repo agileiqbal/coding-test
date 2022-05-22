@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        // need to refactor (move to another file if get time)start
         DisplayMetrics displayMetrics = new DisplayMetrics();
         date_width1 = getResources().getDimensionPixelSize(R.dimen.date_width);
         date_width2 = getResources().getDimensionPixelSize(R.dimen.date_width2);
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         width = displayMetrics.widthPixels;
         profile = new Profile();
-
+        // need to refactor (move to another file if get time)end
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().hide();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
