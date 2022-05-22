@@ -13,7 +13,6 @@ public class CommitList
         this.message = message;
     }
     public CommitList(String name, String message, String avatar, String date, String id){
-        Log.d("iqbal", "called3");
         this.name = name;
         this.message = message;
         this.avatar = avatar;

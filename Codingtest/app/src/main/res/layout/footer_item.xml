@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--suppress ALL -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_height="63dp"
     android:layout_width="fill_parent"
 android:layout_alignParentBottom="true"
@@ -26,18 +26,18 @@ android:orientation="horizontal" >
             >
             <View
                 android:layout_width="7.95dp"
-                android:layout_height="2dp"
+                android:layout_height="3dp"
                 android:id="@+id/ff"
-                android:background="@drawable/btn_first_first"/>
+                android:background="@drawable/image_commit_first"/>
             <View
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:background="@drawable/btn_first_last"/>
+                android:background="@drawable/image_commit_middle"/>
             <View
                 android:layout_width="7.95dp"
-
-                android:layout_height="2dp"
-                android:background="@drawable/btn_first_first"/>
+                android:layout_height="3dp"
+                android:layout_marginLeft="-1dp"
+                android:background="@drawable/image_commit_last"/>
         </LinearLayout>
         <TextView
             android:id="@+id/txtCommit"
@@ -61,11 +61,11 @@ android:orientation="horizontal" >
             android:layout_width="8dp"
             android:layout_height="8dp"
 
-            android:background="@drawable/btn_second_first"/>
+            android:background="@drawable/image_profile_first"/>
         <View
             android:layout_width="16dp"
             android:layout_height="6dp"
-            android:background="@drawable/btn_second_last"/>
+            android:background="@drawable/image_profile_last"/>
         <TextView
             android:id="@+id/txtProfile"
             android:layout_width="44dp"

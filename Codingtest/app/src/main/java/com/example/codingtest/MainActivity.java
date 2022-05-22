@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     public static int width;
-    public static int margin;
+    public static int date_width1;
+    public static int date_width2;
+    public static int message_margin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        margin = getResources().getDimensionPixelSize(R.dimen.message_margin);
+        date_width1 = getResources().getDimensionPixelSize(R.dimen.date_width);
+        date_width2 = getResources().getDimensionPixelSize(R.dimen.date_width2);
+        message_margin = getResources().getDimensionPixelSize(R.dimen.message_margin);
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         width = displayMetrics.widthPixels;
         profile = new Profile();

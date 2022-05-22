@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="#333333"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_marginTop="23dp"
         >
         <TextView
@@ -24,11 +25,11 @@
             android:textSize="17sp" />
         <TextView
             android:id="@+id/txtDate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-
-            android:text="iqbal"
+            android:layout_marginLeft="4dp"
+            android:gravity="right"
+            android:paddingRight="17dp"
             android:textColor="#B8B8B8"
             android:textSize="12sp" />
 

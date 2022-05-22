@@ -29,11 +29,11 @@
         <TextView
 
             android:id="@+id/Button2"
-            android:layout_width="54dp"
+            android:layout_width="70dp"
             android:layout_height="22dp"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:layout_marginLeft="13dp"
-            android:text=" master"
+            android:text="master"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:background="@drawable/rounded_corner"

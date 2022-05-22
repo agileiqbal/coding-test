@@ -1,4 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="message_margin">16dp</dimen>
+    <dimen name="date_width">93dp</dimen>
+    <dimen name="date_width2">120dp</dimen>
 </resources>

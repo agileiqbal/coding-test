@@ -11,23 +11,29 @@ import android.view.LayoutInflater;
 import android.util.Log;
 import android.util.DisplayMetrics;
 import android.content.Context;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.text.Format;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codingtest.MainActivity;
 import com.example.codingtest.R;
 import com.example.codingtest.SecondFragment;
+import com.example.codingtest.utils.Util;
 import com.squareup.picasso.Picasso;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.ViewHolder> {
-   // private CommitList[] listdata;
     private List<CommitList> listdata;
 
     private CallBack mCallBack;
-   // private final OnClickListener mOnClickListener = new MyOnClickListener();
-
     public CommitListAdapter (CallBack callback){
 
         mCallBack = callback;
@@ -40,31 +46,28 @@ public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.Vi
     }
 
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i) {
-       Log.d("iqbal ","called");
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View listItem= layoutInflater.inflate(R.layout.item_list, viewGroup, false);
-        //listItem.setOnClickListener();
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder( CommitListAdapter.ViewHolder viewHolder, int i) {
-        final CommitList myListData = listdata.get(i);
-//        Log.d("iqbal", listdata[i].getName());
-        //LinearLayout.LayoutParams Params1 = new LinearLayout.LayoutParams(15,50);
+        String dateString = Util.getDateString(listdata.get(i).getDate());
+        LinearLayout.LayoutParams llp;
+        if(dateString.length() < 6){
+            llp = new LinearLayout.LayoutParams(MainActivity.width - MainActivity.date_width1, ViewGroup.LayoutParams.WRAP_CONTENT);
+        } else{
+            llp = new LinearLayout.LayoutParams(MainActivity.width - MainActivity.date_width2, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
 
-        LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(MainActivity.width - 310, ViewGroup.LayoutParams.WRAP_CONTENT);
-        llp.setMargins(MainActivity.margin,0,0,0);
-        Log.d("agile", String.valueOf(MainActivity.width));
+        llp.setMargins(MainActivity.message_margin,0,0,0);
         viewHolder.textView.setLayoutParams(llp);
-        int index = listdata.get(i).getDate().indexOf("T");
-        String resultMsg = listdata.get(i).getDate().substring(0, index);
         viewHolder.textView.setText(listdata.get(i).getMessage());
-        viewHolder.txtDate.setText(resultMsg);
+        viewHolder.txtDate.setText(dateString);
         Picasso.get().load(listdata.get(i).getAvatar()).transform(new CropCircleTransformation()).into(viewHolder.smallAvatar);
         viewHolder.txtName.setText(listdata.get(i).getName());
-        //viewHolder.textView.setText("iqbal");
     }
 
     @Override

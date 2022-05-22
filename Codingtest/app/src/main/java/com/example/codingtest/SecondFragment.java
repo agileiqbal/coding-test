@@ -178,6 +178,10 @@ public class SecondFragment extends Fragment {
                 e.printStackTrace();
             }
 
+            if(sb == null){
+                return null;
+            }
+
             jsonString = sb.toString();
 
             System.out.println("JSON: " + jsonString);

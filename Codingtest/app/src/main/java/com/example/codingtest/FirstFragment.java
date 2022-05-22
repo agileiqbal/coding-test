@@ -44,7 +44,6 @@ public class FirstFragment extends Fragment  {
         }
     };
     private FragmentFirstBinding binding;
-    //CommitList[] myListData;
     private List<CommitList> myListData;
     @Override
     public View onCreateView(
@@ -61,8 +60,6 @@ public class FirstFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         new LoadCommitList(getActivity().getApplicationContext()).execute();
-        //View v = (View) view.findViewById(R.id.ff);
-        //v.setAlpha(0.5f);
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.profileLayout);
         ll.setAlpha(0.5f);
         ll.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +89,6 @@ public class FirstFragment extends Fragment  {
         @Override
             protected void onPreExecute() {
             super.onPreExecute();
-            // Showing progress dialog
-
-
         }
 
             @Override
@@ -161,7 +155,6 @@ public class FirstFragment extends Fragment  {
                 JSONArray itemArray=new JSONArray(jsonString);
                 int count = 0;
                 for (int i = 0; i < itemArray.length(); i++) {
-                    //int value=itemArray.getInt(i);
                     JSONObject jobj = itemArray.getJSONObject(i);
                     String commitString = jobj.getString("commit");
                     JSONObject json = new JSONObject(commitString);
@@ -169,7 +162,6 @@ public class FirstFragment extends Fragment  {
                     String name = commit.getString("name");
 
                     if(!name.contains("x") && !name.contains("g")){
-                        Log.d("iqbal count = ", String.valueOf(count));
                         String date = commit.getString("date");
                         String msg = json.getString("message");
                         int index = msg.indexOf("(#");
@@ -180,15 +172,11 @@ public class FirstFragment extends Fragment  {
                         String avatar = json2.getString("avatar_url");
                         CommitList cml = new CommitList(name, resultMsg, avatar,date, id);
                         myListData.add(cml) ;
-                        Log.d("iqbal", cml.getName() + " "+ cml.getAvatar() + cml.getDate() + cml.getMessage() + cml.getId());
                         count++;
                         if(count == 10){
                             break;
                         }
                     }
-
-                    //JSONArray jData = json.getJSONArray("message");
-
 
                 }
 
@@ -205,10 +193,7 @@ public class FirstFragment extends Fragment  {
             @Override
             protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-
-
                CommitListAdapter adapter = new CommitListAdapter(myListData, mOnClickListener);
-                Log.d("iqbal", "ca;;ed3");
                 binding.recyclerview.setHasFixedSize(true);
               //  binding.recyclerview.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
                 binding.recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
